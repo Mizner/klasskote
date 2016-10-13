@@ -1,0 +1,121 @@
+html {
+  font-size: 16px;
+  line-height: 23px;
+}
+
+/* Body Font Color & Style is Set here*/
+
+body {
+  /*font-family: garamond;*/
+  font-family: 'Open Sans', sans-serif;
+  color: #707070;
+  font-weight: 400;
+  background: $darkBlue;
+}
+
+body, button, input, select, textarea {
+  font-size: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+}
+
+p {
+  margin-bottom: 1.3em;
+}
+
+p:empty {
+  display: none;
+  visibility: hidden;
+}
+
+/* Header Font Color & Style is Set here*/
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+  color: $lightBlue;
+  margin: 0;
+  padding: 0 0 20px 0;
+  font-weight: 700;
+  line-height: 1em;
+}
+
+.et_divi_builder #et_builder_outer_content .et_pb_module {
+  h1, h2, h3, h4, h5, h6 {
+    color: $salmon;
+  }
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.9em;
+}
+
+h2 {
+  font-size: 2.269em;
+}
+
+h3 {
+  font-size: 1.857em;
+}
+
+h4 {
+  font-size: 1.714em;
+}
+
+h5 {
+  font-size: 1.571em;
+}
+
+h6 {
+  font-size: 1.286em;
+}
+
+small, .font_small {
+  font-size: 0.75em;
+}
+
+a, .menu-toggle, button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  text-decoration: none;
+  transition: all .3s linear;
+}
+
+a {
+  color: $lightBlue;
+}
+
+a:hover {
+  text-decoration: none;
+  color: $salmon;
+}
+
+li {
+  list-style-type: none;
+}
+
+.clear {
+  clear: both;
+}
+
+header#masthead,
+footer#colophon,
+.site-content,
+.et_pb_section {
+  padding-left: 10% !important;
+  padding-right: 10% !important;
+}
+
+.divi-builder-active .site-content {
+  padding: 0 !important;
+}
+
+.et_divi_builder #et_builder_outer_content .et_pb_with_background .et_pb_row {
+  width: 100% !important;
+}
+
+.et_divi_builder #et_builder_outer_content div.et_pb_section {
+  &.darkBlueBackground {
+    background-color: $darkBlue !important;
+  }
+}

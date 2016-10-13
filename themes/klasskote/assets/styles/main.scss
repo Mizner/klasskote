@@ -1,0 +1,49 @@
+@import "variables";
+@import "base";
+@import "global";
+@import "primary";
+@import "sidebar";
+@import "blog";
+@import "old";
+@import "header";
+@import "navigation";
+@import "footer";
+@import "pages/home";
+@import "buttons";
+@import "woocommerce/index";
+@import "libraries/mizpops";
+@import "libraries/animate";
+@import "libraries/nav-buttons";
+
+// Divi Contact Field
+.et_pb_contact_field {
+  margin-bottom: 1.5em !important;
+}
+ul.et_pb_tabs_controls {
+  display: flex !important;
+  flex-flow: row wrap;
+}
+
+ul.et_pb_tabs_controls > * {
+  flex: 1 100%;
+  @media screen and (min-width: 980px) {
+    flex: 1;
+  }
+  font-size: 0.8em !important;
+  padding: 1em !important;
+  display: flex;
+  justify-content: center;
+  border-right: 1px solid #d9d9d9 !important;
+  text-align: center !important;
+}
+
+// Social Media
+.social-media-icons {
+  > * {
+    display: inline-block;
+    padding-right: 1em;
+    &:last-of-type {
+      padding-right: 0;
+    }
+  }
+}

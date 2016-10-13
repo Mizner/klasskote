@@ -1,0 +1,114 @@
+/*
+ * Custom styles for 'Organizational Schema Widget' plugin
+ *
+ * @author   B3Marketing, LLC — Rick R. Duncan
+ * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
+ * @link     http://www.rickrduncan.com 
+ *
+**/
+
+.rvam-osw-wrapper {
+    clear: both;
+    display: block;
+    margin: 0 0 20px;
+    margin: 0 0 2rem;
+    overflow: hidden;
+}
+
+.osw-data {
+	clear: both;
+	display: block;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+.osw-data.name {
+	font-size: inherit;
+}
+
+.osw-data.fax,
+.osw-data.phone,
+.osw-data.po_box {
+	clear: right;
+	display: inline;
+	float: left;
+}
+
+.osw-label.po_box {
+	display: inline;
+	float: left;
+	margin-right: 4px;
+}
+
+.osw-label.email,
+.osw-label.fax,
+.osw-label.phone,
+.osw-label.url {
+	clear: left;
+	display: inline;
+	float: left;
+	margin-right: 4px;
+}
+
+.osw-label.email,
+.osw-label.fax,
+.osw-label.hours, 
+.osw-label.name,
+.osw-label.phone,
+.osw-label.url {
+	font-weight: bold;
+}
+
+.osw-data.email,
+.osw-data.url {
+	border-bottom: none;
+	clear: right;
+	display: inline;
+	float: left;
+	text-decoration: none;
+}
+
+.osw-data.email:hover,
+.osw-data.url:hover {
+	text-decoration: none;
+}
+
+.osw-data.address {
+	clear: left;
+	display: inline;
+	float: left;
+}
+
+.osw-data.city {
+	clear: left;
+	display: inline;
+	float: left;
+}
+
+.osw-data.city_comma {
+	clear: none;
+	display: inline;
+	float: left;
+	margin-right: 6px;
+}
+
+.osw-data.state_region {
+	clear: none;
+	display: inline;
+	float: left;
+	margin-right: 6px;
+}
+
+.osw-data.postal_code {
+	clear: none;
+	display: inline;
+	float: left;
+	margin-right: 6px;
+}
+
+.osw-opening-hours {
+    clear: both;
+    display: block;
+    float: left;
+    overflow: hidden;
+}

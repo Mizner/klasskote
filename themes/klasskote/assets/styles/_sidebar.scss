@@ -1,0 +1,24 @@
+@media screen and (min-width: 1025px) {
+  .divi-builder-not-active {
+    #secondary {
+      padding: 0 1em 1em;
+      width: 30%;
+      float: right;
+    }
+  }
+}
+
+#secondary {
+  aside {
+    background: white;
+    padding: 1em 1em;
+    ul {
+      margin: 0;
+      padding: 0em;
+      padding-left: 1em;
+    }
+    > ul {
+      padding: 0;
+    }
+  }
+}

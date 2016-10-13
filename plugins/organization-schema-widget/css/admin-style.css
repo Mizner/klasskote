@@ -1,0 +1,18 @@
+/*
+ * Admin styles for 'Organizational Schema Widget' plugin
+ *
+ * @author   B3Marketing, LLC — Rick R. Duncan
+ * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
+ * @link     http://www.rickrduncan.com 
+ *
+**/
+
+
+input[type="checkbox"] {
+	vertical-align: inherit;
+}
+
+.alert {
+	color: red;
+	font-size: 18px;
+}

@@ -1,0 +1,17 @@
+ul.products {
+  li {
+    width: 23% !important;
+    padding-right: 1em !important;
+    margin-bottom: 2em !important;
+  }
+  /*
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  > * {
+    flex: 1;
+    margin: 1em 1em !important;
+    width: 100px;
+  }
+  */
+}

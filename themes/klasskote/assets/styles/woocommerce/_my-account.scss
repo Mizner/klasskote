@@ -1,0 +1,81 @@
+
+// WooCommerce
+
+.woocommerce-MyAccount-navigation-link--dashboard {
+  a:before {
+    content: "\f0e4";
+  }
+}
+
+.woocommerce-MyAccount-navigation-link--orders {
+  a:before {
+    content: "\f07a";
+  }
+}
+
+.woocommerce-MyAccount-navigation-link--subscriptions {
+  a:before {
+    content: "\f1ce";
+  }
+}
+
+.woocommerce-MyAccount-navigation-link--edit-address {
+  a:before {
+    content: "\f015";
+  }
+}
+
+.woocommerce-MyAccount-navigation-link--payment-methods {
+  a:before {
+    content: "\f283";
+  }
+}
+
+.woocommerce-MyAccount-navigation-link--edit-account {
+  a:before {
+    content: "\f007";
+  }
+}
+
+nav.woocommerce-MyAccount-navigation {
+  ul {
+    padding: 0;
+  }
+  li {
+    width: 100%;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    margin-bottom: .5em;
+    &:hover, &:focus {
+      background: white;
+    }
+  }
+}
+
+.woocommerce-MyAccount-navigation-link {
+  position: relative;
+  a {
+    min-width: 200px;
+    padding: .25em .25em .25em 2.5em;
+    font-family: $font-primary;
+    line-height: 2em;
+  }
+  a:after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  a:before {
+    font: normal normal normal 18px/1 FontAwesome;
+    position: absolute;
+    left: .5em;
+    top: .25em;
+    color: $blue;
+  }
+  .is-active {
+
+  }
+}

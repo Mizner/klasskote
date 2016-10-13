@@ -1,0 +1,35 @@
+.mizwrap {
+  position: fixed;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  .closeButton {
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+  }
+}
+.mizinner {
+  padding: 1em;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  > * {
+    padding: 1em;
+  }
+  overflow: scroll;
+}
+
+svg.closeIcon {
+  background: #ed1b24;
+  border-radius: 50px;
+  padding: 0.4em;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.48);
+}
