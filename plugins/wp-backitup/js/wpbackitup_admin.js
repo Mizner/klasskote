@@ -1047,10 +1047,10 @@
     {
       //var restoreColumn = '<td><a href="#" title="' + data.backupFile + '" class="restoreRow" id="restoreRow' + cur_row + '">Restore</a></td>\n';
 
-      var viewColumn = '<td class="word-capitalize">'+ data.backupRuntype +'</td>\n<td>' + data.backupDate + '</td>\n';
-      viewColumn += '<td>'+ data.backupDuration +'</td>\n';
+      var viewColumn = '<td data-th="Type" class="word-capitalize">'+ data.backupRuntype +'</td>\n<td data-th="Date">' + data.backupDate + '</td>\n';
+      viewColumn += '<td data-th="Duration">'+ data.backupDuration +'</td>\n';
       if(data.backupMessage) {
-          viewColumn += '<td>'+ data.backupMessage +'</td>\n';
+          viewColumn += '<td data-th="Status">'+ data.backupMessage +'</td>\n';
       }
 
       // generate inline id
@@ -1063,7 +1063,7 @@
 
       var newRow =
         '<tr ' + css_class + ' id="row' + cur_row + '">\n\
-          <td><a href="#TB_inline?width=600&height=550&inlineId='+ inlineId + '" class="thickbox" title="Download Backup" name="'+ data.backupName +'" data-jobid="'+jobId+'"><i class="fa fa-download"></i> ' + data.backupName + '</a></td>\n';
+          <td data-th="Backup"><a href="#TB_inline?width=600&height=550&inlineId='+ inlineId + '" class="thickbox" title="Download Backup" name="'+ data.backupName +'" data-jobid="'+jobId+'"><i class="fa fa-download"></i> ' + data.backupName + '</a></td>\n';
         newRow += viewColumn;
         //newRow +='<td><a href="#" title="' + data.backupName + '" class="deleteRow" id="deleteRow' + cur_row + '">' + wpbackitup_local.delete + '</a></td>\n';
         newRow += '<td>&nbsp;</td>';

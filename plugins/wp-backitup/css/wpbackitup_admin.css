@@ -359,3 +359,99 @@ ul.tagit input[type="text"] {
     margin: 10px 0;
     width: 15%;
 }
+
+.wpbiu-support-textarea{
+    width:270px;
+    height:100px;
+}
+
+.wpbiu-form-input{
+    padding: 3px !important;
+}
+
+/* Iphone5, Iphone 6, Smart phones ----------- */
+@media only screen  and (max-width : 767px) {
+    #content{
+        width: 100%;
+    }
+
+    .wpbiu-select-box select{
+        width: 40%;
+    }
+    .wpbackitup-topbar h2{
+        font-size: 18px;
+    }
+    .wpbiu-button{
+        float: left !important;
+    }
+    .wpbackitup-topbar{
+        width: 86%;
+        padding: 20px;
+    }
+
+    .widefat  thead{
+      display: none;
+    }
+
+    .widefat  tbody td {
+        display: block;
+        padding: .6rem;
+        margin-left: 0.4rem;
+    }
+
+    .widefat td:before {
+        content: attr(data-th);
+        font-weight: bold;
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 0.3rem;
+        margin-left: -0.3rem;
+    }
+
+    /* pop up */
+    #TB_window{
+        margin-left: -50% !important;
+        width: 100% !important;
+    }
+    #TB_ajaxContent{
+        width:95% !important;
+        padding: 10px;
+    }
+
+    #sidebar{
+        width: 100%;
+    }
+
+    /* restore */
+    .restoreRow{
+        margin-top: -50px;
+        display: block;
+    }
+
+    #wpbackitup-plupload-modal{
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    .wpbiu-support-textarea{
+        width: 95%;
+    }
+    .wpbiu-form-input{
+        width: 95%;
+    }
+}
+
+/* Ipad, Tabs ----------- */
+@media only screen  and (min-width : 768px) and (max-width: 1024px) {
+    #content{
+        width: 100%;
+    }
+
+    .wpbiu-select-box select{
+        width: 40%;
+    }
+
+    #sidebar{
+        width: 100%;
+    }
+
+}

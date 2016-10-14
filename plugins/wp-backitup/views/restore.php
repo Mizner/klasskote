@@ -119,10 +119,10 @@ if (!$restore_folder_exists) {
             $class = $i % 2 == 0 ? 'class="alternate"' : '';
             ?>
             <tr <?php echo $class ?> id="row<?php echo $i; ?>">
-                <td><a href="#TB_inline?width=600&height=200&inlineId=wpbiu-restore-note" class="thickbox" title="Restore Note" name="<?php echo $backup_name ?>" data-jobid="<?php echo $job->getJobId(); ?>"><?php echo $backup_name; ?></a></td>
+                <td data-th="Backup"><a href="#TB_inline?width=600&height=200&inlineId=wpbiu-restore-note" class="thickbox" title="Restore Note" name="<?php echo $backup_name ?>" data-jobid="<?php echo $job->getJobId(); ?>"><?php echo $backup_name; ?></a></td>
 
                 <!--date-->
-                <td><?php echo $file_datetime ?></td>
+                <td data-th="Date"><?php echo $file_datetime ?></td>
 
                 <td>&nbsp;
                     <!--

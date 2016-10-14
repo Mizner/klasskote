@@ -279,7 +279,10 @@ class WPBackItUp_Job {
 
 				case self::ACTIVE:
 					//Error if >= 1 minutes since the last update
-					if (current_time('timestamp')>=$task->getLastUpdatedTimeStamp()+WPBACKITUP__TASK_TIMEOUT_SECONDS){
+					global $WPBackitup;
+					$task_timeout_value = $WPBackitup->max_timeout();
+					
+					if (current_time('timestamp')>=$task->getLastUpdatedTimeStamp()+$task_timeout_value){
 						$task->setStatus(WPBackItUp_Job_Task::ERROR);
 
 						//Update job to error also

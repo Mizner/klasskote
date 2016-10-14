@@ -8,8 +8,8 @@ html {
 body {
   /*font-family: garamond;*/
   font-family: 'Open Sans', sans-serif;
-  color: #707070;
-  font-weight: 400;
+  color: white;
+  font-weight: 100;
   background: $darkBlue;
 }
 
@@ -85,10 +85,16 @@ a {
   color: $lightBlue;
 }
 
-a:hover {
+a:hover, a:focus {
   text-decoration: none;
   color: $salmon;
 }
+
+a:visited {
+  color: $salmon;
+}
+
+
 
 li {
   list-style-type: none;

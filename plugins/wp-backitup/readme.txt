@@ -3,8 +3,8 @@ Contributors: wpbackitup, cssimmon, alaminopu
 Donate link: http://www.wpbackitup.com
 Tags: backup, backups, restore, migrate, clone, duplicate, multisite, database, archive, malware, download, mysql
 Requires at least: 3.8.0
-Tested up to: 4.6
-Stable tag: 1.13
+Tested up to: 4.6.1
+Stable tag: 1.13.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -167,6 +167,13 @@ Our online documentation and full list of FAQs can be found at [support.wpbackit
 
 == Changelog ==
 
+= 1.13.2=
+*Release Date -  October 13, 2016
+
+* UPDATE : Updates to plugin to make responsive
+* UPDATE : Add about page
+* UPDATE : Updates to support page to used tab interface
+* UPDATE : Add task timeout setting
 
 = 1.13.1 =
 *Release Date -  September 19, 2016

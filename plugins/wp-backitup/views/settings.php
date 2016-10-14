@@ -18,6 +18,7 @@
     $wpbackitup_single_file_backupset = $this->single_file_backupset();
     $wpbackitup_single_file_db = $this->single_file_db();
     $wpbackitup_zip_max_size = $this->max_zip_size();
+    $wpbackitup_max_timeout = $this->max_timeout();
 
 
     $backup_dbtables_batch_size=$this->backup_dbtables_batch_size();
@@ -151,6 +152,22 @@
           <div class="submit"><input type="submit" name="Save_max_zip_size" class="button-primary" value="<?php _e("Save", 'wp-backitup') ?>" /></div>
       </div>
 
+      <div class="widget">
+          <h3 class="promo"><i class="fa fa-hourglass-end"></i> <?php _e('Task Timeout', 'wp-backitup') ?></h3>
+          <div class="wpbiu-select-box">
+            <p><b><label for="wpbackitup-max-zip-size"><?php _e('Select how long WPBackItUp should wait for tasks to complete.', 'wp-backitup') ?></label></b></p>
+              <p><?php _e('On some hosts background tasks are allowed to run for a very limited amount of time before they timeout. This setting will tell WPBackItUp how long to wait for each background task to complete.  This setting should only be used when working with WPBackItUp support.', 'wp-backitup') ?></p>
+              <select class="form-control" id="wpbackitup-max-zip-size" name="data[backup_max_timeout]">
+              <option <?php if($wpbackitup_max_timeout=='60') echo 'selected'; ?> value="60"><?php _e('1 Minute', 'wp-backitup') ?></option>
+              <option <?php if($wpbackitup_max_timeout=='120') echo 'selected'; ?> value="120"><?php _e('2 Minute', 'wp-backitup') ?></option>
+              <option <?php if($wpbackitup_max_timeout=='180') echo 'selected'; ?> value="180"><?php _e('3 Minute', 'wp-backitup') ?></option>
+              <option <?php if($wpbackitup_max_timeout=='240') echo 'selected'; ?> value="240"><?php _e('4 Minute', 'wp-backitup') ?></option>
+              <option <?php if($wpbackitup_max_timeout=='300') echo 'selected'; ?> value="300"><?php _e('5 Minute', 'wp-backitup') ?></option>
+            </select>
+          </div>
+          <div class="submit"><input type="submit" name="Save_max_timeout" class="button-primary" value="<?php _e("Save", 'wp-backitup') ?>" /></div>
+      </div>
+
      <div class="widget">
 	    <h3 class="promo"><i class="fa fa-wrench"></i> <?php _e('Batch Size', 'wp-backitup') ?></h3>
         <p><b><?php _e('Enter the batch size for each of your content items.', 'wp-backitup') ?></b></p>
@@ -225,7 +242,8 @@
       <div class="dbfilters_section">
         <div class="dbfilters_section_left">
           <h4>Eligible Database Tables</h4>
-          <ul id="wpbackitup_backup_dbtables_filterable_list" class="wpbackitup_connectedSortable">
+          <ul id="wpbackitup_backup_dbtables_filterable_list" class="wpbackitup_connectedSortable"
+          <?php if(!empty($backup_dbtables_filter_list)){ echo 'style="min-height:100px"'; } ?>>
             <?php
               if(!empty($backup_dbtables_filterable)){
                 foreach($backup_dbtables_filterable as $filterable){
@@ -238,7 +256,8 @@
         </div>
         <div class="dbfilters_section_right">
           <h4>Tables Excluded from the backup</h4>
-          <ul id="wpbackitup_backup_dbtables_filtered_list" class="wpbackitup_connectedSortable">
+          <ul id="wpbackitup_backup_dbtables_filtered_list" class="wpbackitup_connectedSortable"
+          <?php if(!empty($backup_dbtables_filter_list)){ echo 'style="min-height:100px"'; } ?>>
               <?php
                   if(!empty($backup_dbtables_filter_list)){
                     $backup_dbtables_filter_list = explode(", ", $backup_dbtables_filter_list);

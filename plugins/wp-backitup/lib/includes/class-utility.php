@@ -81,15 +81,21 @@ class WPBackItUp_Utility {
 					$headers[] = 'Reply-To: ' .$from_name .' <'. $reply_email .'>';
 				}
 
-				wp_mail($to, $subject, nl2br($message), $headers,$attachments);
+				//Send Mail
+				$rtn_val = wp_mail($to, $subject, nl2br($message), $headers,$attachments);
 
 				WPBackItUp_LoggerV2::log_info($this->log_name,__METHOD__,'Headers:' .var_export($headers,true));
 				WPBackItUp_LoggerV2::log_info($this->log_name,__METHOD__,'EMail Sent from:' .$from_email);
 				WPBackItUp_LoggerV2::log_info($this->log_name,__METHOD__,'EMail Sent to:' .$to);
+				WPBackItUp_LoggerV2::log_info($this->log_name,__METHOD__,'EMail Sent to:' .$to);
+				WPBackItUp_LoggerV2::log_info($this->log_name,__METHOD__,'Return Code:' .var_export( $rtn_val,true ));
+
+				return $rtn_val;
 			}
 
 		} catch(Exception $e) {
 			WPBackItUp_LoggerV2::log_error($this->log_name,__METHOD__,'Send Email Exception:'.$e);
+			return false;
 		}
 
 	}

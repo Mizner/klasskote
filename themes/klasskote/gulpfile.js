@@ -7,7 +7,8 @@ var theFiles = orderJsFiles([
     "navigation.js",
     "navigation-buttons.js",
     "mizpops.js",
-    "main.js"
+    "main.js",
+    "woo-product-cat-toggles.js"
 ]);
 
 // Provide the ability to simplify ordering scripts for concatenation.  See: var theFiles above

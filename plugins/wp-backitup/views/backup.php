@@ -225,7 +225,7 @@ function scan_import_backups($backup_dir){
     <img height="60" src="<?php echo WPBACKITUP__PLUGIN_URL . "images/wpbackitup-logo-small.png";?>">
     </a>
     <h2>WPBackItUp Backup &amp; Restore </h2>
-    <a target="_blank" href="https://wordpress.org/support/view/plugin-reviews/wp-backitup#postform" class="button button-hero button-primary wpbiu-button">Review Plugin</a>
+    <a target="_blank" href="https://wordpress.org/support/plugin/wp-backitup/reviews/?filter=5" class="button button-hero button-primary wpbiu-button">Review Plugin</a>
 </div>
 
 <?php // Notification Widget
@@ -382,7 +382,7 @@ if (!$backup_folder_exists) {
             ?>
 
             <tr <?php echo $class ?> id="row<?php echo $i; ?>">
-              <td>
+              <td data-th="<?php _e('Backup', 'wp-backitup') ?>">
                   <?php
                     $zip_files = $job->getJobMetaValue('backup_zip_files');
                     if(is_array($zip_files) && count($zip_files)>0) { ?>
@@ -395,13 +395,13 @@ if (!$backup_folder_exists) {
                   } ?>
               </td>
 
-              <td class="word-capitalize"><?php echo $backup_run_type ?></td>
+              <td class="word-capitalize" data-th="<?php _e('Type', 'wp-backitup') ?>"><?php echo $backup_run_type ?></td>
               <!--date-->
-              <td><?php echo $file_datetime ?></td>
+              <td data-th="<?php _e('Date', 'wp-backitup') ?>"><?php echo $file_datetime ?></td>
 
-              <td><?php echo $job->getJobDurationFormatted() ?></td>
+              <td data-th="<?php _e('Duration', 'wp-backitup') ?>"><?php echo $job->getJobDurationFormatted() ?></td>
 
-              <td><?php echo $status ?></td>
+              <td data-th="<?php _e('Status', 'wp-backitup') ?>"><?php echo $status ?></td>
 
                <td>
                <a href="#" title="Delete Backup" data-id="<?php echo $job->getJobId() ?>" class="deleteRow" id="deleteRow<?php echo $i; ?>"><i class="fa fa-trash-o"></i> <?php _e('Delete', 'wp-backitup') ?></a></td>
@@ -606,9 +606,9 @@ if (!$backup_folder_exists) {
 
               <li><?php echo($this->get_anchor_with_utm(__('Documentation','wp-backitup'),'support/solutions','useful+links','documentation',WPBACKITUP__SUPPORTSITE_URL))?></li>
 
-              <?php if ($license_active || $is_lite_registered) : ?>
-                  <li><?php echo( $this->get_anchor_with_utm(__('Get support','wp-backitup'),'solution/articles/5000691566-support-requests' ,'useful+links','get+support',WPBACKITUP__SUPPORTSITE_URL))?></li>
-              <?php endif; ?>
+<!--              --><?php //if ($license_active || $is_lite_registered) : ?>
+<!--                  <li>--><?php //echo( $this->get_anchor_with_utm(__('Get support','wp-backitup'),'solution/articles/5000691566-support-requests' ,'useful+links','get+support',WPBACKITUP__SUPPORTSITE_URL))?><!--</li>-->
+<!--              --><?php //endif; ?>
 
               <li><?php echo($this->get_anchor_with_utm(__('Feature request','wp-backitup'),'contact' ,'useful+links','feature+request'))?></li>
               

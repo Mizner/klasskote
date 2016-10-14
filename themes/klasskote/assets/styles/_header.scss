@@ -43,12 +43,13 @@ header#masthead {
     margin: 0;
   }
   a.phoneNumber {
-    font-size: .8em;
+    font-size: 1em;
     font-family: sans-serif;
     font-weight: 100;
     letter-spacing: 1px;
     margin-right: 1em;
-    background: green;
+    background: linear-gradient(to bottom, green 0%, #0b2b0b 100%) !important;
+    font-family: 'Raleway', sans-serif;
     padding: .5em;
     line-height: .8em;
     border-radius: 90px;

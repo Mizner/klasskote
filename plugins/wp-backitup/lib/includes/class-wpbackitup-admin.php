@@ -70,6 +70,7 @@ class WPBackitup_Admin {
         'backup_uploads_batch_size'=>WPBACKITUP__UPLOADS_BATCH_SIZE,
         'backup_others_batch_size'=>WPBACKITUP__OTHERS_BATCH_SIZE,
         'backup_zip_max_size'=>WPBACKITUP__ZIP_MAX_FILE_SIZE,
+        'backup_max_timeout'=>WPBACKITUP__TASK_TIMEOUT_SECONDS,
         'backup_plugins_filter'=> '',
         'backup_themes_filter' => '',
         'backup_uploads_filter' => '',
@@ -228,8 +229,11 @@ class WPBackitup_Admin {
         //Add Settings Menu Nav
         add_submenu_page( $this->namespace, __('Settings', 'wp-backitup'), __('Settings','wp-backitup'), 'administrator', $this->namespace.'-settings', array( &$this, 'admin_settings_page' ) );
 
-        // Add About Nav
-        //add_submenu_page( $this->namespace, __('About', 'wp-backitup'), __('About','wp-backitup'), 'administrator', $this->namespace.'-about', array( &$this, 'admin_about_page' ) );
+        // Add about Nav
+        add_submenu_page( $this->namespace, __('About', 'wp-backitup'), __('About','wp-backitup'), 'administrator', $this->namespace.'-about', array( &$this, 'admin_about_page' ) );
+
+//	    // Add getting started Nav
+//	    add_submenu_page( $this->namespace, __('Getting Started', 'wp-backitup'), __('Getting Started','wp-backitup'), 'administrator', $this->namespace.'-getting-started', array( &$this, 'admin_about_page' ) );
 
 	    //show test page when true AND localhost
         if (WPBACKITUP__DEBUG===true && $_SERVER['HTTP_HOST']=='localhost'){
@@ -237,7 +241,7 @@ class WPBackitup_Admin {
         }
         // remove duplicate submenu page. wp limitations // 
         // http://wordpress.stackexchange.com/questions/16401/remove-duplicate-main-submenu-in-admin
-        remove_submenu_page($this->namespace,$this->namespace); 
+        remove_submenu_page($this->namespace,$this->namespace);
 
     }
 
@@ -302,7 +306,7 @@ class WPBackitup_Admin {
             wp_enqueue_style( "{$this->namespace}-jquery-ui-css" );
 
 			//Admin fonts
-		    wp_register_style( 'google-fonts', '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' );
+		    wp_register_style( 'google-fonts', '//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' );
 		    wp_enqueue_style( 'google-fonts' );
 
             //UPLOADS only
@@ -370,6 +374,7 @@ class WPBackitup_Admin {
         include WPBACKITUP__PLUGIN_PATH . "/views/about.php";
     }
 
+
     /**
      * The admin section backup page rendering method
      *
@@ -389,6 +394,25 @@ class WPBackitup_Admin {
      * @uses WPBackitup::_admin_options_update()
      */
     public  function route() {
+
+	    //check to see if this if wpbackitup was just activated
+	    if ( get_transient( '_wpbackitup_activation_redirect' ) ){
+
+		    // Delete the redirect transient
+		    delete_transient( '_wpbackitup_activation_redirect' );
+
+		    if ( ! is_network_admin() && !isset( $_GET['activate-multi'] ) ){	
+			    $upgrade = get_option( 'wp-backitup_previous_version' );
+	            if( ! $upgrade ) { // First time install
+	                wp_safe_redirect( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about'  ), 'admin.php' )));
+	            } else { // Update
+	                wp_safe_redirect( admin_url( add_query_arg( array( 'page' => 'wp-backitup-about','tab'=>'whats-new' ), 'admin.php' ))) ;
+	            }
+
+			    return; //dont do anything else
+		    }
+	    }
+	    
         $uri = $_SERVER['REQUEST_URI'];
         $protocol = isset( $_SERVER['HTTPS'] ) ? 'https' : 'http';
         $hostname = $_SERVER['HTTP_HOST'];
@@ -457,7 +481,6 @@ class WPBackitup_Admin {
 		require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-job.php' );
 		require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-job-task.php' );
         require_once( WPBACKITUP__PLUGIN_PATH . '/lib/includes/class-job-item.php' );
-
 
 		$languages_path = dirname(dirname(dirname( plugin_basename( __FILE__ )))) . '/languages/';
 
@@ -1137,10 +1160,16 @@ class WPBackitup_Admin {
                    $data['rversion_compare'] = $this->defaults['rversion_compare'];
                 }
 
-                //** VALIDATE rversion_compare **//
+                //** VALIDATE zip max size **//
                 if(empty($data['backup_zip_max_size']))
                 {
                    $data['backup_zip_max_size'] = $this->defaults['backup_zip_max_size'];
+                }
+
+                //** VALIDATE max timeout **//
+                if(empty($data['backup_max_timeout']))
+                {
+                   $data['backup_max_timeout'] = $this->defaults['backup_max_timeout'];
                 }
 
                 //** VALIDATE delete_all  on uninstall **//
@@ -1376,13 +1405,17 @@ class WPBackitup_Admin {
 
                 $support_body=$site_info . '<br/><br/><b>Customer Comments:</b><br/><br/>' . $_POST['support_body'];
 
-                $utility->send_email_v2($support_to_address,$support_subject,$support_body,$logs_attachment,$from_name,$support_from_email,$support_from_email);
-                // get rid of the transients
-				foreach( $_POST as $key => $val ){
-					delete_transient($key);
-				}
+                if ($utility->send_email_v2($support_to_address,$support_subject,$support_body,$logs_attachment,$from_name,$support_from_email,$support_from_email)){
+	                // get rid of the transients
+					foreach( $_POST as $key => $val ){
+						delete_transient($key);
+					}
 
-				wp_safe_redirect($url . '&s=1');
+					wp_safe_redirect($url . '&s=1');
+                } else{
+	                wp_safe_redirect($url . '&s=2');
+                }
+
 				exit;
 			}
 		}
@@ -1887,6 +1920,16 @@ class WPBackitup_Admin {
 
 
 	/**
+	 * Formatted Version getter
+	 * 
+	 * @return string
+	 */
+	public function formatted_version(){
+		
+		return rtrim ($this->version,'.0');;
+	}
+
+	/**
 	 * Getter - Max Zip Size
 	 */
 	public function max_zip_size(){
@@ -1898,6 +1941,19 @@ class WPBackitup_Admin {
 		
 		$this->set('backup_zip_max_size', $value);
 	}
+
+    /**
+     * Getter - Max timeout
+     */
+    public function max_timeout(){
+        return $this->get('backup_max_timeout');
+    }
+
+    //setter
+    public function set_max_timeout($value){
+        
+        $this->set('backup_max_timeout', $value);
+    }
 
 
     //getter
@@ -2521,6 +2577,9 @@ class WPBackitup_Admin {
      */
     public static function activate() {
        try{
+
+	       //tells wpbackitup to redirect to getting started
+	       set_transient( '_wpbackitup_activation_redirect', true, 30 );
 
 	       //add cron task for once per hour starting in 1 hour
 	       if(!wp_next_scheduled( 'wpbackitup_queue_scheduled_jobs' ) ){

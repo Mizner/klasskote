@@ -42,6 +42,9 @@ function wpbackitup_update_plugin() {
 		return;
 	}
 
+	
+	//update previous version setting
+	update_option( 'wp-backitup_previous_version', sprintf( '%s.%s',$current_plugin_major_ver,$current_plugin_minor_ver ) );
 
 	//If the major version are the same then just run the minor updates
 	if ($current_plugin_major_ver == $target_plugin_major_ver ){
